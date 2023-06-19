@@ -33,6 +33,23 @@ export const UploadBooks = async (req: Request, res: Response) => {
 // View one book:
 
 // Get/view all books:
+export const ViewAllBooks = async (req: Request, res: Response) => {
+  try {
+    const AllBooks = await BookModels.find().sort({
+      createdAt: -1,
+    });
+
+    return res.status(200).json({
+      message: `Successfully gotten all ${AllBooks.length} Book(s)`,
+      data: AllBooks,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: "Couldn't get all books",
+      data: error,
+    });
+  }
+};
 
 // Update a book:
 

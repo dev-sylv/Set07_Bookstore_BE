@@ -9,6 +9,7 @@ const port: number = 3500;
 // Extantiated my server from express
 const app: Application = express();
 mongoose;
+app.use(express.json());
 
 // Configuring the routes for the project
 app.use("/api", Router);
