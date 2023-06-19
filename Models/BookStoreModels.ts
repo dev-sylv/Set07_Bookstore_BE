@@ -11,26 +11,30 @@ interface Books {
 
 interface iBooks extends Books, mongoose.Document {}
 
-const BookSchema = new mongoose.Schema({
-  title: {
-    type: String,
+const BookSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      unique: true,
+    },
+    description: {
+      type: String,
+    },
+    author: {
+      type: String,
+    },
+    views: {
+      type: [],
+    },
+    coverImage: {
+      type: String,
+    },
+    category: {
+      type: String,
+    },
   },
-  description: {
-    type: String,
-  },
-  author: {
-    type: String,
-  },
-  views: {
-    type: [],
-  },
-  coverImage: {
-    type: String,
-  },
-  category: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
 const BookModels = mongoose.model<iBooks>("Books", BookSchema);
 
