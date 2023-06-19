@@ -31,6 +31,23 @@ export const UploadBooks = async (req: Request, res: Response) => {
 };
 
 // View one book:
+export const ViewSingleBook = async (req: Request, res: Response) => {
+  try {
+    const { bookID } = req.params;
+    const singlebook = await BookModels.findById(bookID);
+    // const singlebook = await BookModels.findById(req.params.bookID)
+
+    return res.status(200).json({
+      message: "Sucessfully gotten this book",
+      data: singlebook,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: "Couldn't get this book",
+      data: error,
+    });
+  }
+};
 
 // Get/view all books:
 export const ViewAllBooks = async (req: Request, res: Response) => {
